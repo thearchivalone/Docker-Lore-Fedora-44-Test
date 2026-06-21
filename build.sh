@@ -1,6 +1,9 @@
 #!/bin/bash
-cd /cache &&
-  curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs >installer.sh &&
+cd /cache
+if [ ! -d "lore" ]; then
+  git clone --recursive --depth=1 https://github.com/EpicGames/lore.git
+fi
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs >installer.sh &&
   chmod +x installer.sh &&
   ./installer.sh -y &&
   . "${HOME}/.cargo/env" &&
